@@ -18,7 +18,6 @@ namespace BehaviorLib
     public class DisappearWithRightClickBehavior : Behavior<UIElement>
     {
         private Canvas canvas;
-        Task t;
 
         protected override void OnAttached()
         {
