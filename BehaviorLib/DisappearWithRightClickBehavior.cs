@@ -39,9 +39,12 @@ namespace BehaviorLib
         private void AssociatedObject_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             if(canvas == null) canvas = VisualTreeHelper.GetParent(this.AssociatedObject) as Canvas;
-            //mouseOffset = e.GetPosition(AssociatedObject);
-            Point point = e.GetPosition(canvas);
-                    AssociatedObject.SetValue(Canvas.LeftProperty, canvas.Height + 6000);
+            DoubleAnimation animation =
+                new DoubleAnimation(canvas.ActualWidth * 2, TimeSpan.FromSeconds(1));
+            animation.Completed += (s, a) => {
+                AssociatedObject.SetValue(UIElement.VisibilityProperty, Visibility.Collapsed);
+            };
+            AssociatedObject.BeginAnimation(Canvas.LeftProperty, animation);
         }
 
         
